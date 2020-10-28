@@ -21,3 +21,12 @@ There's also a hint in Appendix 4:
 
 > To calculate a median value, we need to get the age of each individual line of code. This sounds like a job for
 > `git blame`. We could even add the `--porcelain` option to make it easier to consume the output.
+
+We got the basic idea working, using the
+[GNU datamash](https://www.gnu.org/software/datamash/) tool to compute the medians of the
+unix time stamps.
+
+There's a lot that could be added to this, such
+as recursive directory traversal, the computation
+of other stats, and flags to control the display
+format, but this is enough for now.
