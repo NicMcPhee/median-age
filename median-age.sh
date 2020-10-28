@@ -15,10 +15,15 @@ file=$(basename "$path")
         git blame --line-porcelain "$file" |
             # We want to get the author-time lines out of `git blame --porcelain`.
             grep author-time |
-            # Take the median of the 2nd column (the time stamps)
-            datamash --field-separator ' ' median 2
+            # Take the min, max, median, and sampled standard deviation
+            # of the 2nd column (the time stamps)
+            datamash --field-separator ' ' min 2 max 2 median 2 sstdev 2
         )
-    # I'm not sure we *always* want to convert to a human readable form?
-    # There might be times when the time stamp would be more useful?
-    date -d "@$timestamp"
+    # It would be nice to at least have the option of converting the
+    # timestamps into more human readable forms like that provided by
+    # `date -d @1389842262`? That should probably be controlled by 
+    # flags in some way. We might also want to allow
+    # for CSV style output for systems that want to read this and do
+    # additional analysis on it.
+    echo "$timestamp"
 )
