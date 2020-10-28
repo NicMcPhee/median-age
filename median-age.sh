@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Compute the "median age" of the specified file based on the git commit
+# dates of the lines in the file.
+
+# Requires that you have the program `datamash` installed.
+
 path=$1
 dir=$(dirname "$path")
 file=$(basename "$path")
